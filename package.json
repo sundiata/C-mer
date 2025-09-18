@@ -1,0 +1,47 @@
+{
+  "name": "data-analytics-company",
+  "version": "1.0.0",
+  "description": "Beautiful data analytics education and evaluation company website",
+  "main": "src/index.tsx",
+  "scripts": {
+    "start": "webpack serve --mode development --open",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "data-analytics",
+    "education",
+    "evaluation",
+    "react",
+    "tailwind"
+  ],
+  "author": "DataAnalytics Pro",
+  "license": "ISC",
+  "dependencies": {
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "lucide-react": "^0.544.0",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-icons": "^5.5.0",
+    "react-router-dom": "^7.9.1",
+    "recharts": "^3.2.0",
+    "typescript": "^5.9.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "autoprefixer": "^10.4.21",
+    "css-loader": "^7.1.2",
+    "html-webpack-plugin": "^5.6.4",
+    "mini-css-extract-plugin": "^2.9.4",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.2.0",
+    "style-loader": "^4.0.0",
+    "tailwindcss": "^3.4.0",
+    "ts-loader": "^9.5.4",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.2"
+  }
+}
