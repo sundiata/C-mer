@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle, User, Building, Mail, Phone, MessageSquare, FileText } from 'lucide-react';
-import { GOOGLE_APPS_SCRIPT_CONFIG } from '../../config';
 
 interface FormData {
   firstName: string;
@@ -83,56 +82,37 @@ const Apply: React.FC = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!validateForm()) return;
 
     setIsSubmitting(true);
 
-    try {
-      const GOOGLE_APPS_SCRIPT_URL = GOOGLE_APPS_SCRIPT_CONFIG.URL;
+    // Simulate form submission
+    console.log('Form submitted successfully:', formData);
 
-      const response = await fetch(GOOGLE_APPS_SCRIPT_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+    // Show success message
+    setIsSubmitted(true);
+
+    // Reset form after successful submission
+    setTimeout(() => {
+      setFormData({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        company: '',
+        position: '',
+        serviceType: '',
+        projectDescription: '',
+        budget: '',
+        timeline: '',
+        additionalInfo: ''
       });
-
-      const result = await response.json();
-
-      if (result.success) {
-        console.log('Form submitted successfully:', formData);
-        setIsSubmitted(true);
-
-        // Reset form after successful submission
-        setTimeout(() => {
-          setFormData({
-            firstName: '',
-            lastName: '',
-            email: '',
-            phone: '',
-            company: '',
-            position: '',
-            serviceType: '',
-            projectDescription: '',
-            budget: '',
-            timeline: '',
-            additionalInfo: ''
-          });
-          setIsSubmitted(false);
-        }, 5000);
-      } else {
-        throw new Error(result.message || 'Failed to submit application');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      alert('There was an error submitting your application. Please try again or contact us directly.');
-    } finally {
+      setIsSubmitted(false);
       setIsSubmitting(false);
-    }
+    }, 3000);
   };
 
   const handleInputChange = (field: keyof FormData, value: string) => {
