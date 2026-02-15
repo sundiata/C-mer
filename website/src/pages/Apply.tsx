@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Send, CheckCircle, AlertCircle, User, Building, Mail, Phone, MessageSquare, FileText, Linkedin, Twitter } from 'lucide-react';
+import { PUBLIC_API_BASE_URL } from '../config';
 
 interface FormData {
   firstName: string;
@@ -90,7 +91,7 @@ const Apply: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      const resp = await fetch('http://localhost:3004/api/contacts', {
+      const resp = await fetch(`${PUBLIC_API_BASE_URL}/contacts`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData)

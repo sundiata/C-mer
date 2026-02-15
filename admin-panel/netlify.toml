@@ -1,5 +1,4 @@
 [build]
-  base = "website"
   publish = "dist"
   command = "npm run build"
 
@@ -10,6 +9,4 @@
 
 [build.environment]
   NODE_VERSION = "20"
-  PUBLIC_API_BASE_URL = "https://backend-production-c4b0.up.railway.app/api"
-
-
+  REACT_APP_API_URL = "https://backend-production-c4b0.up.railway.app/api"
