@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Test - Admin Panel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            text-align: center;
+        }
+        h1 { font-size: 2.5em; margin-bottom: 20px; }
+        p { font-size: 1.2em; margin: 10px 0; }
+        .status { background: rgba(0, 255, 0, 0.2); padding: 10px; border-radius: 5px; margin: 10px 0; }
+        .test-btn {
+            background: #4ade80;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-btn:hover { background: #22c55e; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Simple HTML Test</h1>
+        <div class="status">
+            <p>✅ Static HTML is working!</p>
+            <p>✅ Server is responding on port 3002</p>
+        </div>
+        <p><strong>Current URL:</strong> <span id="currentUrl"></span></p>
+        <p><strong>Timestamp:</strong> <span id="timestamp"></span></p>
+
+        <button class="test-btn" onclick="testAPI()">Test API Connection</button>
+        <button class="test-btn" onclick="goToMainApp()">Go to Main App</button>
+
+        <div id="apiResult" style="margin-top: 20px; display: none;">
+            <p>API Test Result: <span id="apiStatus"></span></p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('currentUrl').textContent = window.location.href;
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+
+        function testAPI() {
+            document.getElementById('apiResult').style.display = 'block';
+            document.getElementById('apiStatus').textContent = 'Testing...';
+
+            fetch('http://localhost:3001/api/health')
+                .then(response => {
+                    if (response.ok) {
+                        document.getElementById('apiStatus').textContent = '✅ SUCCESS - Backend is running!';
+                        document.getElementById('apiStatus').style.color = '#4ade80';
+                    } else {
+                        throw new Error('HTTP ' + response.status);
+                    }
+                })
+                .catch(error => {
+                    document.getElementById('apiStatus').textContent = '❌ FAILED - ' + error.message;
+                    document.getElementById('apiStatus').style.color = '#ef4444';
+                });
+        }
+
+        function goToMainApp() {
+            window.location.href = '/';
+        }
+
+        // Auto-test API on page load
+        window.onload = function() {
+            setTimeout(testAPI, 1000);
+        };
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
